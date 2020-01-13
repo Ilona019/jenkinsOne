@@ -3,6 +3,8 @@ package testproject;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
+import java.beans.Transient;
+
 public class AggregatorTest {
 
     @Test
@@ -26,5 +28,14 @@ public class AggregatorTest {
         agr.addValue(val);
         agr.addValue(val);
         assertThat(agr.getSum()).isEqualTo(val * 2);
+    }
+
+    @Test
+    public void testReset() {
+        Aggregator agr = new Aggregator();
+        double val = 12;
+        agr.addValue(val);
+        agr.reset();
+        assertThat(agr.getSum()).isEqualTo(0);
     }
 }
